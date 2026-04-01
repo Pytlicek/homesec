@@ -1,0 +1,19 @@
+[Unit]
+Description=Raspberry Pi Security Camera Streamer
+After=network.target
+
+[Service]
+# Run as Root
+User=root
+WorkingDirectory=/opt/sec_cam
+# path to python within venv
+ExecStart=/opt/sec_cam/.venv/bin/python3 /opt/sec_cam/pi_streamer.py
+# Automatic restart after 5 secs if script fails
+Restart=always
+RestartSec=5
+# Log to syslog
+StandardOutput=inherit
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target
